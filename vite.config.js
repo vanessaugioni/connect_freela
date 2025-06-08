@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite'
-import defaultTheme from 'tailwindcss/defaultTheme'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 

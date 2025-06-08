@@ -4,7 +4,8 @@ import About from './pages/about'
 import Servico from './pages/service'
 import Footer from './components/footer'
 import Navbar from './components/navbar'
-import Cliente from './pages/Client'
+import User from './pages/user'
+import Login from './pages/Login'
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
           <Routes>
             <Route path="/" element={<About />} />
             <Route path="/service" element={<Servico/>} />
-            <Route path="/client" element={<Cliente/>} />
+            <Route path="/user" element={<User/>} />
+            <Route path="/login" element={<Login/>} />
           </Routes>
         </main>
         <Footer/>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, MapPin} from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -16,8 +16,10 @@ export default function Footer() {
          <div className="p-2 rounded-full hover:bg-white/20 transition duration-300 ease-in-out cursor-pointer">
          <Phone size={20} />
          </div>
+         <div className="p-2 rounded-full hover:bg-white/20 transition duration-300 ease-in-out cursor-pointer">
+         <MapPin size={20}/>
+         </div>
         </div>
-
       </div>
     </footer>
   )
