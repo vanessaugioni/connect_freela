@@ -1,7 +1,35 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // ⏱️ Detect changes in location (including after login)
+  useEffect(() => {
+    const cookie = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('user='));
+    if (cookie) {
+      try {
+        const userData = JSON.parse(decodeURIComponent(cookie.split('=')[1]));
+        setUser(userData);
+      } catch (e) {
+        console.error('Erro ao analisar cookie do usuário:', e);
+        setUser(null);
+      }
+    } else {
+      setUser(null);
+    }
+  }, [location]); // 🔁 Runs again every time route changes
+
+  const handleLogout = () => {
+    document.cookie = `user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    setUser(null);
+    navigate('/login');
+  };
+
   return (
     <nav className="bg-sky-700 w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-4">
@@ -15,8 +43,7 @@ export default function Navbar() {
             </p>
           </div>
 
-          {/* Navegação */}
-          <div className="flex space-x-4">
+          <div className="flex items-center space-x-4">
             <NavLink
               to="/"
               end
@@ -27,7 +54,6 @@ export default function Navbar() {
                     : 'text-white hover:bg-sky-600 hover:text-white'
                 }`
               }
-              aria-current={({ isActive }) => (isActive ? 'page' : undefined)}
             >
               Sobre
             </NavLink>
@@ -40,7 +66,6 @@ export default function Navbar() {
                     : 'text-white hover:bg-sky-600 hover:text-white'
                 }`
               }
-              aria-current={({ isActive }) => (isActive ? 'page' : undefined)}
             >
               Serviços
             </NavLink>
@@ -53,14 +78,28 @@ export default function Navbar() {
                     : 'text-white hover:bg-sky-600 hover:text-white'
                 }`
               }
-              aria-current={({ isActive }) => (isActive ? 'page' : undefined)}
             >
               Usuários
             </NavLink>
+
+            {user ? (
+              <button
+                onClick={handleLogout}
+                className="rounded-full px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition duration-300"
+              >
+                Sair ({user.username})
+              </button>
+            ) : (
+              <NavLink
+                to="/login"
+                className="rounded-full px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 transition duration-300"
+              >
+                Login
+              </NavLink>
+            )}
           </div>
-          
         </div>
       </div>
     </nav>
-  )
+  );
 }
