@@ -6,7 +6,6 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // ⏱️ Detect changes in location (including after login)
   useEffect(() => {
     const cookie = document.cookie
       .split('; ')
@@ -22,7 +21,7 @@ export default function Navbar() {
     } else {
       setUser(null);
     }
-  }, [location]); // 🔁 Runs again every time route changes
+  }, [location]);
 
   const handleLogout = () => {
     document.cookie = `user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
