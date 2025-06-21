@@ -25,7 +25,6 @@ export default function Login() {
     const { username, password, name, email } = formData;
 
     if (isRegistering) {
-      // Check if user already exists
       const checkRes = await fetch(`http://localhost:3000/users?username=${username}`);
       const existing = await checkRes.json();
       if (existing.length > 0) {
@@ -33,7 +32,6 @@ export default function Login() {
         return;
       }
 
-      // Register new user
       const newUser = {
         id: crypto.randomUUID(),
         username,
