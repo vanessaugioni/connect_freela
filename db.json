@@ -27,14 +27,99 @@
       "password": "123",
       "name": "Gabriel Nunes Müller",
       "email": "EMAIL"
+    },
+    {
+      "id": "4cb0",
+      "username": "vanessa_ugioni",
+      "password": "2468",
+      "name": "Vanessa Ugioni",
+      "email": "vanessa_ugioni@gmail.com"
     }
   ],
   "services": [
     {
-        "userId": "d370",
-        "title": "123",
-        "description": "abc",
-        "price": 123
+      "userId": "d370",
+      "title": "123",
+      "description": "abc",
+      "price": 123,
+      "id": "7f51"
+    },
+    {
+      "id": "d824",
+      "title": "Pintura ",
+      "description": "Realizamos pinturas a domicílio",
+      "price": "30000",
+      "userId": "4cb0"
+    },
+    {
+      "id": "70c8",
+      "title": "testeee",
+      "description": "testeeeeee",
+      "price": "338887",
+      "userId": "4cb0"
+    },
+    {
+      "id": "867f",
+      "title": "teste de teste ",
+      "description": "djdjdjdjdjdjd",
+      "price": "3299",
+      "userId": "4cb0"
+    },
+    {
+      "id": "5f4f",
+      "title": "aaaaaaaaaaaaa",
+      "description": "aaaaaaa",
+      "price": "3333",
+      "userId": "4cb0"
+    },
+    {
+      "id": "f32c",
+      "title": "vvvvvvvvvvvvvvvv",
+      "description": "testeeeee",
+      "price": "10000",
+      "userId": "4cb0"
+    },
+    {
+      "id": "47b3",
+      "title": "AAAAAAAAA",
+      "description": "aaaaaaaaaaaaaaaaa",
+      "price": "2000000",
+      "userId": "4cb0"
+    },
+    {
+      "id": "0024",
+      "title": "AAAAAAAAAAAAA",
+      "description": "ggggggggggggg",
+      "price": "30000",
+      "userId": "4cb0"
+    },
+    {
+      "id": "a3d3",
+      "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "description": "aaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "price": "2900000",
+      "userId": "4cb0"
+    },
+    {
+      "id": "e5cd",
+      "title": "bbbbbbbbbb",
+      "description": "bbbbbbbbbbbbb",
+      "price": "200000",
+      "userId": "4cb0"
+    },
+    {
+      "id": "1b29",
+      "title": "teste",
+      "description": "teste",
+      "price": "5555555",
+      "userId": "4cb0"
+    },
+    {
+      "id": "9955",
+      "title": "aaaaaaaaaa",
+      "description": "aaaaaaaaaaaaaa",
+      "price": "4444444444444",
+      "userId": "4cb0"
     }
   ]
 }

@@ -88,85 +88,111 @@ export default function Servico() {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-5">
       {user && (
-        <button
-          onClick={handleNew}
-          className="bg-green-500 text-white px-4 py-2 rounded mb-6"
-        >
-          Novo Serviço
-        </button>
+        <div className="flex items-center justify-between mb-6 flex-wrap gap-2 p-2">
+          <h1 className="text-2xl font-bold text-gray-800">Serviços disponíveis</h1>
+          <button
+            onClick={handleNew}
+            className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-md transition"
+          >
+            Novo Serviço
+          </button>
+        </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto">
         {services.map((service) => (
           <div
             key={service.id}
-            className="border rounded-lg p-4 shadow hover:shadow-md transition"
-            onMouseEnter={() => {
-              if (user?.id === service.userId) {
-                // optional highlight
-              }
-            }}
+            className="group bg-gray-100 border border-gray-200 rounded-xl p-3 shadow-sm hover:bg-sky-700 hover:shadow-md transition duration-300 flex flex-col justify-between min-h-[140px]"
           >
-            <h3 className="text-xl font-bold">{service.title}</h3>
-            <p className="text-gray-700">{service.description}</p>
-            <p className="text-blue-700 font-semibold mt-2">R$ {service.price}</p>
-            <p className="text-sm text-gray-500 mt-1">
-              Criado por: <strong>{getUserName(service.userId)}</strong>
-            </p>
+            <div>
+              <h3 className="text-lg font-semibold text-sky-700 group-hover:text-white transition">
+                {service.title}
+              </h3>
+
+              <p className="text-gray-700 mt-1 text-sm group-hover:text-gray-100 transition line-clamp-2">
+                {service.description}
+              </p>
+
+              <p className="text-sky-700 font-semibold mt-2 group-hover:text-white transition">
+                R$ {service.price}
+              </p>
+
+              <p className="text-xs text-gray-500 mt-1 group-hover:text-gray-200 transition">
+                Criado por: <strong>{getUserName(service.userId)}</strong>
+              </p>
+            </div>
+
             {user?.id === service.userId && (
-              <button
-                onClick={() => handleEdit(service)}
-                className="mt-3 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-              >
-                Editar
-              </button>
+              <div className="flex items-center gap-2 mt-3 justify-end">
+                <button
+                  onClick={() => handleEdit(service)}
+                  className="bg-sky-700 text-white border px-3 py-1.5 rounded-md text-sm font-medium hover:bg-sky-900 hover:text-white transition"
+                >
+                  Editar
+                </button>
+                <button
+                  className="bg-red-600 text-white border px-3 py-1.5 rounded-md text-sm font-medium hover:bg-red-700 hover:text-white transition"
+                >
+                  Excluir
+                </button>
+              </div>
             )}
           </div>
+
+
         ))}
       </div>
 
       {showForm && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
-            <h2 className="text-xl font-bold mb-4">
+          <div className="bg-white p-6 rounded-2xl shadow-lg w-full max-w-md">
+            <h2 className="text-xl font-semibold text-sky-700 mb-4 text-center">
               {editingService ? "Editar Serviço" : "Novo Serviço"}
             </h2>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <input
                 name="title"
+                required
                 value={formData.title}
                 onChange={handleChange}
                 placeholder="Título"
-                className="border p-2 rounded"
+                className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
               />
+
               <textarea
                 name="description"
+                required
                 value={formData.description}
                 onChange={handleChange}
                 placeholder="Descrição"
-                className="border p-2 rounded"
+                className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
               />
+
               <input
                 name="price"
+                required
                 type="number"
                 value={formData.price}
                 onChange={handleChange}
                 placeholder="Preço"
-                className="border p-2 rounded"
+                className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
               />
-              <div className="flex justify-between mt-4">
+
+              <div className="flex justify-end mt-4 gap-2">
                 <button
                   type="submit"
-                  className="bg-blue-600 text-white px-4 py-2 rounded"
+                  className="bg-sky-700 hover:bg-sky-800 text-white px-5 py-2 rounded-md transition"
                 >
                   Salvar
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowForm(false)}
-                  className="bg-gray-300 px-4 py-2 rounded"
+                  className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-5 py-2 rounded-md transition"
                 >
                   Cancelar
                 </button>
@@ -174,6 +200,7 @@ export default function Servico() {
             </form>
           </div>
         </div>
+
       )}
     </div>
   );

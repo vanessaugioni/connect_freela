@@ -70,63 +70,72 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg w-full max-w-md shadow">
-        <h2 className="text-xl font-semibold mb-4">
-          {isRegistering ? 'Criar Conta' : 'Login'}
-        </h2>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+<div className="flex justify-center items-center full-screen">
+  <div className="bg-white p-6 rounded-2xl w-full max-w-sm sm:max-w-md shadow-lg">
+    <h2 className="text-xl font-semibold text-sky-700 mb-6 text-center">
+      {isRegistering ? "Criar Conta" : "Login"}
+    </h2>
+
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <input
+        name="username"
+        value={formData.username}
+        onChange={handleChange}
+        placeholder="Username"
+        required
+        className="border border-gray-300 focus:border-sky-700 focus:ring-1 focus:ring-sky-700 p-3 rounded-md outline-none transition"
+      />
+
+      <input
+        name="password"
+        type="password"
+        value={formData.password}
+        onChange={handleChange}
+        placeholder="Senha"
+        required
+        className="border border-gray-300 focus:border-sky-700 focus:ring-1 focus:ring-sky-700 p-3 rounded-md outline-none transition"
+      />
+
+      {isRegistering && (
+        <>
           <input
-            name="username"
-            value={formData.username}
+            name="name"
+            value={formData.name}
             onChange={handleChange}
-            placeholder="Username"
-            className="border p-2 rounded"
+            placeholder="Nome"
             required
+            className="border border-gray-300 focus:border-sky-700 focus:ring-1 focus:ring-sky-700 p-3 rounded-md outline-none transition"
           />
           <input
-            name="password"
-            type="password"
-            value={formData.password}
+            name="email"
+            type="email"
+            value={formData.email}
             onChange={handleChange}
-            placeholder="Senha"
-            className="border p-2 rounded"
+            placeholder="Email"
             required
+            className="border border-gray-300 focus:border-sky-700 focus:ring-1 focus:ring-sky-700 p-3 rounded-md outline-none transition"
           />
-          {isRegistering && (
-            <>
-              <input
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Nome"
-                className="border p-2 rounded"
-                required
-              />
-              <input
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email"
-                className="border p-2 rounded"
-                required
-              />
-            </>
-          )}
+        </>
+      )}
 
-          <button type="submit" className="bg-blue-600 text-white p-2 rounded">
-            {isRegistering ? 'Criar Conta' : 'Entrar'}
-          </button>
+      <button
+        type="submit"
+        className="bg-sky-700 hover:bg-sky-800 text-white p-3 rounded-md transition font-semibold"
+      >
+        {isRegistering ? "Criar Conta" : "Entrar"}
+      </button>
 
-          <button
-            type="button"
-            onClick={() => setIsRegistering(prev => !prev)}
-            className="text-sm text-blue-600 underline mt-2"
-          >
-            {isRegistering ? 'Já tem uma conta? Entrar' : 'Não tem conta? Criar uma'}
-          </button>
-        </form>
-      </div>
-    </div>
+      <button
+        type="button"
+        onClick={() => setIsRegistering((prev) => !prev)}
+        className="text-sm text-sky-700 hover:text-sky-900 underline mt-3"
+      >
+        {isRegistering
+          ? "Já tem uma conta? Entrar"
+          : "Não tem conta? Criar uma"}
+      </button>
+    </form>
+  </div>
+</div>
   );
 }

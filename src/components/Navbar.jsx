@@ -32,7 +32,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-sky-700 w-full">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-4">
+      <div className="mx-auto px-4 sm:px-6 lg:px-10 py-4">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-1.5">
             <span className="text-3xl sm:text-4xl font-bold text-white">

@@ -65,77 +65,111 @@ export default function User() {
     };
 
     return (
-        <div className="p-4 flex justify-center max-h-full">
-            <div className="flex flex-col items-center gap-2 w-1/2">
+        <div className="p-5">
+            <div className="flex items-center justify-between mb-6 flex-wrap gap-2 p-2">
+                <h1 className="text-2xl font-bold text-gray-800">Clientes cadastrados</h1>
                 <button
                     onClick={handleNewUser}
-                    className="bg-green-500 text-white px-4 py-2 rounded mb-2 cursor-pointer"
-                > Novo Cliente
+                    className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-md transition"
+                >
+                    Novo Cliente
                 </button>
+            </div>
+
+            <div className="p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-6 max-h-[600px] overflow-y-auto">
                 {users.map((user) => (
-                    <div
-                        key={user.id || user.username}
-                        className="p-2 w-full border rounded hover:bg-gray-100 cursor-pointer"
-                        onClick={() => handleSelect(user)}
-                    >
-                        <strong>{user.name}</strong>
-                        <p className="text-sm">{user.email}</p>
-                    </div>
+                    
+                        <div
+                            key={user.id || user.username}
+                            onClick={() => handleSelect(user)}
+                            className="cursor-pointer group bg-gray-100 border border-gray-200 rounded-xl p-4 shadow-sm hover:bg-sky-700 hover:shadow-md transition duration-300"
+                        >
+                            <div className="flex items-center justify-between">
+                                <h3 className="text-lg font-semibold text-sky-700 group-hover:text-white transition">
+                                    {user.name}
+                                </h3>
+                                <div className="flex items-center gap-2 ml-4">
+                                    <button
+                                        onClick={() => handleEdit(user)}
+                                        className="bg-sky-700 text-white border px-3 py-1.5 rounded-md text-sm font-medium hover:bg-sky-900 hover:text-white transition"
+                                    >
+                                        Editar
+                                    </button>
+                                    <button
+                                        onClick={() => handleDelete(user)}
+                                        className="bg-red-600 text-white border px-3 py-1.5 rounded-md text-sm font-medium hover:bg-red-700 hover:text-white transition"
+                                    >
+                                        Excluir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <p className="text-sm text-gray-600 mt-2 group-hover:text-gray-200 transition">
+                                E-mail: {user.email}
+                            </p>
+                        </div>
                 ))}
             </div>
 
             {showForm && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black/75 z-50">
-                    <div className="bg-white p-6 rounded-lg w-full max-w-md">
-                        <h2 className="text-xl font-semibold mb-4">
+                <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+                    <div className="bg-white p-6 rounded-2xl shadow-lg w-full max-w-md">
+                        <h2 className="text-xl font-semibold text-sky-700 mb-4 text-center">
                             {selectedUser ? `Editando ${selectedUser.name}` : "Novo Cliente"}
                         </h2>
-                        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+
+                        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                             {newUser && (
                                 <>
                                     <input
                                         name="username"
+                                        required
                                         value={formData.username}
                                         onChange={handleChange}
                                         placeholder="Username"
-                                        className="border p-2 rounded"
+                                        className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
                                     />
                                     <input
                                         name="password"
+                                        required
+                                        type="password"
                                         value={formData.password}
                                         onChange={handleChange}
-                                        type="password"
                                         placeholder="Senha"
-                                        className="border p-2 rounded"
+                                        className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
                                     />
                                 </>
                             )}
+
                             <input
                                 name="name"
+                                required
                                 value={formData.name}
                                 onChange={handleChange}
                                 placeholder="Nome"
-                                className="border p-2 rounded"
+                                className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
                             />
                             <input
                                 name="email"
+                                required
+                                type="email"
                                 value={formData.email}
                                 onChange={handleChange}
                                 placeholder="Email"
-                                className="border p-2 rounded"
+                                className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
                             />
 
-                            <div className="flex gap-2 mt-4">
+                            <div className="flex justify-end gap-2 mt-4">
                                 <button
                                     type="submit"
-                                    className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
+                                    className="bg-sky-700 hover:bg-sky-800 text-white px-5 py-2 rounded-md transition"
                                 >
                                     {selectedUser ? "Salvar Alterações" : "Adicionar Usuário"}
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => setShowForm(false)}
-                                    className="bg-gray-300 text-black px-4 py-2 rounded cursor-pointer"
+                                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-5 py-2 rounded-md transition"
                                 >
                                     Cancelar
                                 </button>
@@ -145,5 +179,6 @@ export default function User() {
                 </div>
             )}
         </div>
+
     );
 } 
