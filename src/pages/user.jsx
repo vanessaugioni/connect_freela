@@ -4,18 +4,24 @@ export default function User() {
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [showForm, setShowForm] = useState(false);
-    const [newUser, setNewUser] = useState(false);
     const [formData, setFormData] = useState({
         username: "",
         password: "",
         name: "",
+        contact: "",
         email: ""
     });
 
     const fetchUsers = async () => {
-        const res = await fetch("http://localhost:3000/users");
-        const data = await res.json();
-        setUsers(data);
+        try {
+            const res  = await fetch("http://localhost:3000/users");
+            const data = await res.json();
+            setUsers(data);            
+        } catch (error) {
+            console.error("Erro ao buscar usuários:", error);
+            const data = [];
+            setUsers(data);
+        }
     };
 
     useEffect(() => {
@@ -25,14 +31,12 @@ export default function User() {
     const handleSelect = (user) => {
         setSelectedUser(user);
         setFormData(user);
-        setNewUser(false);
         setShowForm(true);
     };
 
     const handleNewUser = () => {
         setSelectedUser(null);
-        setFormData({ username: "", password: "", name: "", email: "" });
-        setNewUser(true);
+        setFormData({ username: "", password: "", name: "", contact: "", email: "" });
         setShowForm(true);
     };
 
@@ -44,23 +48,32 @@ export default function User() {
         e.preventDefault();
 
         if (selectedUser) {
-            await fetch(`http://localhost:3000/users/${selectedUser.id}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
-            });
+            try {
+                await fetch(`http://localhost:3000/users/${selectedUser.id}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData)
+                });
+            } catch (error) {
+                console.error("Erro ao atualizar usuário:", error);
+            }
+
         } else {
-            await fetch("http://localhost:3000/users", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
-            });
+            try {
+                await fetch("http://localhost:3000/users", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData)
+                });
+            } catch (error) {
+                console.error("Erro ao criar novo usuário:", error);
+            }
         }
 
         await fetchUsers();
 
         setSelectedUser(null);
-        setFormData({ username: "", password: "", name: "", email: "" });
+        setFormData({ username: "", password: "", name: "", contact: "", email: "" });
         setShowForm(false);
     };
 
@@ -119,27 +132,23 @@ export default function User() {
                         </h2>
 
                         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                            {newUser && (
-                                <>
-                                    <input
-                                        name="username"
-                                        required
-                                        value={formData.username}
-                                        onChange={handleChange}
-                                        placeholder="Username"
-                                        className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
-                                    />
-                                    <input
-                                        name="password"
-                                        required
-                                        type="password"
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        placeholder="Senha"
-                                        className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
-                                    />
-                                </>
-                            )}
+                            <input
+                                name="username"
+                                required
+                                value={formData.username}
+                                onChange={handleChange}
+                                placeholder="Username"
+                                className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
+                            />
+                            <input
+                                name="password"
+                                required
+                                type="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                placeholder="Senha"
+                                className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
+                            />
 
                             <input
                                 name="name"
@@ -149,6 +158,16 @@ export default function User() {
                                 placeholder="Nome"
                                 className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
                             />
+
+                            <input
+                                name="contact"
+                                required
+                                value={formData.contact}
+                                onChange={handleChange}
+                                placeholder="Contato"
+                                className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
+                            />
+
                             <input
                                 name="email"
                                 required

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  const [formData, setFormData] = useState({ username: '', password: '', name: '', email: '' });
+  const [formData, setFormData] = useState({ username: '', password: '', name: '', contact: '', email: '' });
   const [isRegistering, setIsRegistering] = useState(false);
   const navigate = useNavigate();
 
@@ -22,11 +22,18 @@ export default function Login() {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const { username, password, name, email } = formData;
+    const { username, password, name, contact, email } = formData;
 
     if (isRegistering) {
-      const checkRes = await fetch(`http://localhost:3000/users?username=${username}`);
-      const existing = await checkRes.json();
+      let existing;
+      try {
+        const checkRes = await fetch(`http://localhost:3000/users?username=${username}`);
+        existing = await checkRes.json();
+      } catch (error) {
+        console.error('Erro ao checar novo usuário:', error);
+        existing = [];
+      }
+
       if (existing.length > 0) {
         alert('Usuário já existe.');
         return;
@@ -37,6 +44,7 @@ export default function Login() {
         username,
         password,
         name,
+        contact,
         email,
       };
 
@@ -104,6 +112,16 @@ export default function Login() {
             required
             className="border border-gray-300 focus:border-sky-700 focus:ring-1 focus:ring-sky-700 p-3 rounded-md outline-none transition"
           />
+          <input
+            name="contact"
+            type="contact"
+            value={formData.contact}
+            onChange={handleChange}
+            placeholder="Contato"
+            required
+            className="border border-gray-300 focus:border-sky-700 focus:ring-1 focus:ring-sky-700 p-3 rounded-md outline-none transition"
+          />
+          
           <input
             name="email"
             type="email"

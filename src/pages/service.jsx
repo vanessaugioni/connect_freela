@@ -9,7 +9,8 @@ export default function Servico() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    price: ""
+    price: "",
+    time: ""
   });
 
   // Fetch session user
@@ -24,14 +25,26 @@ export default function Servico() {
   }, []);
 
   const fetchServices = async () => {
-    const res = await fetch("http://localhost:3000/services");
-    const data = await res.json();
+    let data;
+    try {
+      const res = await fetch("http://localhost:3000/services");
+      data = await res.json();
+    } catch (error) {
+      console.log("Erro ao buscar serviços", error);
+      data = [];
+    }
     setServices(data);
   };
 
   const fetchUsers = async () => {
-    const res = await fetch("http://localhost:3000/users");
-    const data = await res.json();
+    let data;
+    try {
+      const res = await fetch("http://localhost:3000/users");
+      data = await res.json();
+    } catch (error) {
+      data = []; 
+    }
+
     setUsers(data);
   };
 
@@ -50,7 +63,7 @@ export default function Servico() {
   };
 
   const handleNew = () => {
-    setFormData({ title: "", description: "", price: "" });
+    setFormData({ title: "", description: "", price: "", time: "" });
     setEditingService(null);
     setShowForm(true);
   };
@@ -179,6 +192,16 @@ export default function Servico() {
                 value={formData.price}
                 onChange={handleChange}
                 placeholder="Preço"
+                className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
+              />
+              
+              <input
+                name="time"
+                required
+                type="time"
+                value={formData.time}
+                onChange={handleChange}
+                placeholder="Horas"
                 className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
               />
 
