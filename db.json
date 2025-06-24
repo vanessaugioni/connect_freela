@@ -45,13 +45,6 @@
       "id": "7f51"
     },
     {
-      "id": "d824",
-      "title": "Pintura ",
-      "description": "Realizamos pinturas a domicílio",
-      "price": "30000",
-      "userId": "4cb0"
-    },
-    {
       "id": "70c8",
       "title": "testeee",
       "description": "testeeeeee",
@@ -112,13 +105,6 @@
       "title": "teste",
       "description": "teste",
       "price": "5555555",
-      "userId": "4cb0"
-    },
-    {
-      "id": "9955",
-      "title": "aaaaaaaaaa",
-      "description": "aaaaaaaaaaaaaa",
-      "price": "4444444444444",
       "userId": "4cb0"
     }
   ]

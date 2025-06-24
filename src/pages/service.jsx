@@ -100,6 +100,24 @@ export default function Servico() {
     await fetchServices();
   };
 
+
+  const handleDelete = async (serviceId) => {
+    const confirmDelete = window.confirm("Tem certeza que deseja excluir este serviço?");
+    if (!confirmDelete) return;
+
+    try {
+      await fetch(`http://localhost:3000/services/${serviceId}`, {
+        method: "DELETE",
+      });
+      await fetchServices();
+    } catch (error) {
+      console.error("Erro ao excluir serviço:", error);
+      alert("Falha ao excluir serviço.");
+    }
+  };
+
+
+
   return (
    <div className="p-4">
       {user && (
@@ -147,6 +165,7 @@ export default function Servico() {
                   Editar
                 </button>
                 <button
+                  onClick={() => handleDelete(service.id)}
                   className="bg-red-600 text-white border px-3 py-1.5 rounded-md text-sm font-medium hover:bg-red-700 hover:text-white transition"
                 >
                   Excluir
