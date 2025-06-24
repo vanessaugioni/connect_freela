@@ -77,6 +77,21 @@ export default function User() {
         setShowForm(false);
     };
 
+    const handleDelete = async (user) => {
+  const confirmDelete = window.confirm(`Tem certeza que deseja excluir o cliente "${user.name}"?`);
+  if (!confirmDelete) return;
+
+  try {
+    await fetch(`http://localhost:3000/users/${user.id}`, {
+      method: "DELETE",
+    });
+    await fetchUsers(); 
+  } catch (error) {
+    console.error("Erro ao excluir usuário:", error);
+    alert("Erro ao tentar excluir o usuário.");
+  }
+};
+
     return (
         <div className="p-5">
             <div className="flex items-center justify-between mb-6 flex-wrap gap-2 p-2">

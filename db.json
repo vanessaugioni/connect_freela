@@ -1,13 +1,6 @@
 {
   "users": [
     {
-      "username": "JoDoe",
-      "password": "senha",
-      "name": "John Doea",
-      "email": "EMAIL",
-      "id": "8aaf"
-    },
-    {
       "username": "JaneS",
       "password": "senha",
       "name": "Jane Smith",
