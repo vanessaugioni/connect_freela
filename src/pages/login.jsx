@@ -76,8 +76,8 @@ export default function Login() {
   };
 
   return (
-<div className="flex justify-center items-center full-screen">
-  <div className="bg-white p-6 rounded-2xl w-full max-w-sm sm:max-w-md shadow-lg">
+<div className="h-screen flex justify-center items-center">
+  <div className="bg-white p-6 rounded-2xl w-full max-w-sm shadow-lg mx-6">
     <h2 className="text-xl font-semibold text-sky-700 mb-6 text-center">
       {isRegistering ? "Criar Conta" : "Login"}
     </h2>
@@ -114,14 +114,13 @@ export default function Login() {
           />
           <input
             name="contact"
-            type="contact"
+            type="text"
             value={formData.contact}
             onChange={handleChange}
             placeholder="Contato"
             required
             className="border border-gray-300 focus:border-sky-700 focus:ring-1 focus:ring-sky-700 p-3 rounded-md outline-none transition"
           />
-          
           <input
             name="email"
             type="email"
