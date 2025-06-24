@@ -77,7 +77,7 @@ export default function Login() {
 
   return (
 <div className="h-screen flex justify-center items-center">
-  <div className="bg-white p-6 rounded-2xl w-full max-w-sm shadow-lg mx-6">
+  <div className="bg-white p-6 rounded-2xl w-full max-w-sm shadow-lg mx-4">
     <h2 className="text-xl font-semibold text-sky-700 mb-6 text-center">
       {isRegistering ? "Criar Conta" : "Login"}
     </h2>

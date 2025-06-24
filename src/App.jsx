@@ -19,8 +19,9 @@ function AppLayout() {
   const isLoginPage = location.pathname === '/login';
 
   return (
-    <div className={`h-screen flex flex-col ${isLoginPage ? 'bg-sky-700' : 'bg-white'}`}>
+    <div className={`min-h-screen flex flex-col ${isLoginPage ? 'bg-sky-700' : 'bg-white'}`}>
       {!isLoginPage && <Navbar />}
+
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<About />} />
@@ -29,6 +30,7 @@ function AppLayout() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </main>
+
       {!isLoginPage && <Footer />}
     </div>
   );

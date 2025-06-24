@@ -101,9 +101,9 @@ export default function Servico() {
   };
 
   return (
-    <div className="p-5">
+   <div className="p-4">
       {user && (
-        <div className="flex items-center justify-between mb-6 flex-wrap gap-2 p-2">
+        <div className="flex items-center justify-between mb-2 flex-wrap gap-2 p-2">
           <h1 className="text-2xl font-bold text-gray-800">Serviços disponíveis</h1>
           <button
             onClick={handleNew}
