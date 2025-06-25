@@ -116,8 +116,6 @@ export default function Servico() {
     }
   };
 
-
-
   return (
    <div className="p-4">
       {user && (
@@ -159,13 +157,17 @@ export default function Servico() {
             {user?.id === service.userId && (
               <div className="flex items-center gap-2 mt-3 justify-end">
                 <button
-                  onClick={() => handleEdit(service)}
+                  onClick={() => {
+                    handleEdit(service);
+                  }}
                   className="bg-sky-700 text-white border px-3 py-1.5 rounded-md text-sm font-medium hover:bg-sky-900 hover:text-white transition"
                 >
                   Editar
                 </button>
                 <button
-                  onClick={() => handleDelete(service.id)}
+                  onClick={() => {
+                    handleDelete(service.id);
+                  }}
                   className="bg-red-600 text-white border px-3 py-1.5 rounded-md text-sm font-medium hover:bg-red-700 hover:text-white transition"
                 >
                   Excluir

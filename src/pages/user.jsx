@@ -78,19 +78,20 @@ export default function User() {
     };
 
     const handleDelete = async (user) => {
-  const confirmDelete = window.confirm(`Tem certeza que deseja excluir o cliente "${user.name}"?`);
-  if (!confirmDelete) return;
+        const confirmDelete = window.confirm(`Tem certeza que deseja excluir o cliente "${user.name}"?`);
+        if (!confirmDelete) return;
 
-  try {
-    await fetch(`http://localhost:3000/users/${user.id}`, {
-      method: "DELETE",
-    });
-    await fetchUsers(); 
-  } catch (error) {
-    console.error("Erro ao excluir usuário:", error);
-    alert("Erro ao tentar excluir o usuário.");
-  }
-};
+        try {
+            await fetch(`http://localhost:3000/users/${user.id}`, {
+            method: "DELETE",
+            });
+            await fetchUsers(); 
+        } catch (error) {
+            console.error("Erro ao excluir usuário:", error);
+            alert("Erro ao tentar excluir o usuário.");
+        }
+    };
+
 
     return (
         <div className="p-5">
@@ -118,13 +119,19 @@ export default function User() {
                                 </h3>
                                 <div className="flex items-center gap-2 ml-4">
                                     <button
-                                        onClick={() => handleEdit(user)}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleEdit(user);
+                                        }}
                                         className="bg-sky-700 text-white border px-3 py-1.5 rounded-md text-sm font-medium hover:bg-sky-900 hover:text-white transition"
                                     >
                                         Editar
                                     </button>
                                     <button
-                                        onClick={() => handleDelete(user)}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleDelete(user);
+                                        }}
                                         className="bg-red-600 text-white border px-3 py-1.5 rounded-md text-sm font-medium hover:bg-red-700 hover:text-white transition"
                                     >
                                         Excluir
