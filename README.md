@@ -26,4 +26,5 @@ Este projeto foi desenvolvido com:
 
 2. Instale as dependências:
     npm install 
-    npm run dev 
+    npm run dev
+    json-server --watch db.json
