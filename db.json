@@ -35,7 +35,9 @@
       "title": "123",
       "description": "abc",
       "price": 123,
-      "id": "7f51"
+      "id": "7f51",
+      "type": "1",
+      "time": "12:22"
     },
     {
       "id": "70c8",

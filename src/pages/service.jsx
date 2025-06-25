@@ -10,6 +10,7 @@ export default function Servico() {
     title: "",
     description: "",
     price: "",
+    type: "",
     time: ""
   });
 
@@ -63,7 +64,7 @@ export default function Servico() {
   };
 
   const handleNew = () => {
-    setFormData({ title: "", description: "", price: "", time: "" });
+    setFormData({ title: "", description: "", price: "", type: "", time: "" });
     setEditingService(null);
     setShowForm(true);
   };
@@ -215,6 +216,19 @@ export default function Servico() {
                 placeholder="Preço"
                 className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
               />
+
+              <select
+                name="type"
+                required
+                value={formData.type}
+                onChange={handleChange}
+                placeholder="Tipo"
+                className="border border-gray-300 focus:border-sky-700 focus:ring-sky-700 p-2 rounded-md outline-none transition"
+              >
+                <option value=""></option>
+                <option value="1">Programação</option>
+                <option value="2">Design</option>
+              </select>
               
               <input
                 name="time"
